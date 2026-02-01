@@ -15,6 +15,10 @@ pipeline {
             steps {
                 script {
                     echo "Building the application..."
+                    def dockercmd = 'docker run -d -p3000:3000 vuyalaarun/node-app:1.4.0'
+                    sshagent(['aws-server-key']) {
+                   sh "ssh ec-o StrictHostKeyChecking=no 2-user@3.135.211.122 ${dockercmd}"
+                 }
                 }
             }
         }
